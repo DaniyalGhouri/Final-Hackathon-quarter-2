@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
+
 const Hero = () => {
   return (
     <>
@@ -35,25 +36,25 @@ const Hero = () => {
       </section>
 
       {/* Second Section: Top Pick */}
-      <section className="bg-gray-100 text-black py-10">
-        <div className="container mx-auto px-4">
+      <section className="bg-[#faf4f4] text-black py-10">
+        <div className="container mx-auto px-[100px]">
           
           <div className="flex justify-between">
-            <div className="w-1/2 pr-4">
+            <div className="bg-[#faf4f4] p-4 rounded shadow-lg">
             <Image
                 src="/images/product15.jpeg"
                 alt="Side Table"
                 width={400}
                 height={400}
-                className="object-contain"
+                className="object-contain bg-white"
               />
               <h3 className="text-3xl font-semibold mb-2">Side Table</h3>
-              <a href="#" className="underline text-sm mb-4">
+              <a href={`/Shop`} className="underline text-sm mb-4">
                 View More
               </a>
               
             </div>
-            <div className="w-1/2 pl-4">
+            <div className="bg-[#faf4f4] p-4 rounded shadow-lg">
             <Image
                 src="/images/side_table_2.jpeg"
                 alt="Another Side Table"
@@ -63,7 +64,7 @@ const Hero = () => {
               />
 
               <h3 className="text-3xl font-semibold mb-2">Side Table</h3>
-              <a href="#" className="underline text-sm mb-4">
+              <a href="/Shop" className="underline text-sm mb-4">
                 View More
               </a>
              
@@ -122,7 +123,7 @@ const Hero = () => {
               <h3 className="text-sm font-semibold mt-2 ">Plain console with teak mirror</h3>
               <p className="text-lg font-bold">Rs. 25,000.00</p>
             </div>
-            <div ><a href="#" className=" text-center underline text-sm mb-4">
+            <div ><a href="/Shop" className=" text-center underline text-sm mb-4">
               View More
             </a></div>
           </div>
@@ -147,7 +148,7 @@ const Hero = () => {
            
             <div className="container mx-auto flex justify-end py-10 text-center">
   <a 
-    href="/shop/asgaardsofa"
+    href="/Shop"
     className=" text-center border-2 border-black text-black py-2 px-6 text-lg font-semibold rounded-md hover:bg-black hover:text-white transition"
     style={{ width: "200px", textAlign: "center" }}
   >
@@ -224,7 +225,7 @@ const Hero = () => {
 
     {/* View All Posts Button */}
     <div className="text-center mt-8">
-      <a href="/src/app/Blog/app.tsx" className="underline text-sm">
+      <a href="/Blog" className="underline text-sm">
         View All Posts
       </a>
     </div>

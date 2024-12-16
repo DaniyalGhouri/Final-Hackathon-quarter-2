@@ -15,6 +15,7 @@ social-btn {
   background-color: #0077b5; /* Default background */
   text-decoration: none;
   transition: background-color 0.3s;
+  background-image: url('/Images/banner.png');
 }
 
 .social-btn:hover {

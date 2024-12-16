@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Banner from '../components/banner'
+import Feature from '../components/Feature'
 
 const Account = () => {
   return (
@@ -8,16 +10,10 @@ const Account = () => {
       {/* First Section with Tailwind Background */}
       <section className="relative h-[60vh] bg-cover bg-center bg-shop-bg">
         <div className="absolute inset-0 bg-black opacity-50"></div>
+        <Banner/>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
           {/* Small Image in Center */}
           <div className="mb-4">
-            <Image
-              src="/image/shop.png" 
-              alt="Shop Icon"
-              width={100}   
-              height={100}  
-              className="object-cover rounded-full"
-            />
           </div>
           <h1 className="text-5xl font-bold">Account</h1>
           <p className="text-xl mt-4">
@@ -60,12 +56,12 @@ const Account = () => {
                   <label htmlFor="rememberMe" className="text-lg">Remember Me</label>
                 </div>
                 {/* Login Button */}
-                <button className="w-10000 py-2 bg-transparent border border-black rounded-md text-black text-lg hover:bg-black hover:text-white transition">
+                <button className="w-[215px] h-[64px] py-2 bg-transparent border border-black rounded-md text-black text-lg hover:bg-black hover:text-white transition">
                   Login
                 </button>
                 {/* Lost Password Link */}
-                <div className="text-center mt-4">
-                  <Link href="#" className="text-lg text-blue-600">Lost your password?</Link>
+                <div className="text-center w-[160px] h-[24px] mt-[1010] relative left-[418px]">
+                  <Link href="#" className="text-lg text-blue-600 font-[24px] leading-[24px]">Lost your password?</Link>
                 </div>
               </form>
             </div>
@@ -94,7 +90,7 @@ const Account = () => {
                   </p>
                 </div>
                 {/* Register Button */}
-                <button className="w-100 py-4 bg-transparent border border-black rounded-md text-black text-lg hover:bg-black hover:text-white transition">
+                <button className="w-[215px] h-[64px] py-4 bg-transparent border border-black rounded-md text-black text-lg hover:bg-black hover:text-white transition">
                   Register
                 </button>
               </form>
@@ -103,30 +99,7 @@ const Account = () => {
         </div>
       </section>
 
-      {/* 3rd Section: CONCEPT Posts */}
-      <section className="bg-gray-100 text-black py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* First Column */}
-            <div className="text-center">
-              <h2 className="text-black font-bold text-3xl">Free Delivery</h2>
-              <p className="text-lg text-gray-700">For all orders over $50, consectetur adipim scing elit.</p>
-            </div>
-
-            {/* Second Column */}
-            <div className="text-center">
-              <h2 className="text-black font-bold text-3xl">90 Days Return</h2>
-              <p className="text-lg text-gray-700">If the product has an issue, consectetur adipim scing elit.</p>
-            </div>
-
-            {/* Third Column */}
-            <div className="text-center">
-              <h2 className="text-black font-bold text-3xl">Secure Payments</h2>
-              <p className="text-lg text-gray-700">100% secure payments, consectetur adipim scing elit.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <Feature/> 
     </div>
   )
 }

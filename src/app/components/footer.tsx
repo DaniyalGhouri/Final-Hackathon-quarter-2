@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
                         <h3 className="text-gray-500 text-sm font-medium mb-3">Help</h3>
                         <ul>
                             <li>
-                                <a href="#" className="text-gray-800 hover:text-gray-900 transition">Payment Options</a>
+                                <a href="/checkout" className="text-gray-800 hover:text-gray-900 transition">Payment Options</a>
                             </li>
                             <li>
                                 <a href="#" className="text-gray-800 hover:text-gray-900 transition">Return</a>

@@ -1,104 +1,24 @@
-// import React from 'react';
 
-// function Cart() {
-//   const cartItems = [
-    
-//     { id: 1, name: 'Product A', price: 19.99, quantity: 2 },
-    
-//   ];
-
-//   return (
-//     <div className="flex flex-row">
-//   <div className="w-1/2 border border-gray-200 p-4">
-    
-//   </div>
-//   <div className="w-1/2 border border-gray-200 p-4">
-    
- 
-//   <div className="container mx-auto">
-//   <div className="flex flex-col md:flex-row">
-//     <div className="w-full md:w-1/2 border border-gray-200 p-4">
-      
-  
-//     <div className="max-w-md mx-auto bg-white p-6 shadow-md rounded-lg">
-//       <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-//       <ul>
-//         <li className="flex justify-between items-center mb-4 border-b pb-4">
-//           <img
-//             src="https://via.placeholder.com/150"
-//             alt="Product A"
-//             className="w-20 h-20 object-cover rounded-md"
-//           />
-//           <div className="flex-1 ml-4">
-//             <h2 className="text-lg font-semibold">Product A</h2>
-//             <p className="text-gray-500">Quantity: 2</p>
-//             <p className="text-lg font-bold">$100</p>
-//           </div>
-//         </li>
-//         <li className="flex justify-between items-center mb-4 border-b pb-4">
-//           <img
-//             src="https://via.placeholder.com/150"
-//             alt="Product B"
-//             className="w-20 h-20 object-cover rounded-md"
-//           />
-//           <div className="flex-1 ml-4">
-//             <h2 className="text-lg font-semibold">Product B</h2>
-//             <p className="text-gray-500">Quantity: 1</p>
-//             <p className="text-lg font-bold">$75</p>
-//           </div>
-//         </li>
-//         <li className="flex justify-between items-center mb-4 border-b pb-4">
-//           <img
-//             src="https://via.placeholder.com/150"
-//             alt="Product C"
-//             className="w-20 h-20 object-cover rounded-md"
-//           />
-//           <div className="flex-1 ml-4">
-//             <h2 className="text-lg font-semibold">Product C</h2>
-//             <p className="text-gray-500">Quantity: 3</p>
-//             <p className="text-lg font-bold">$90</p>
-//           </div>
-//         </li>
-//       </ul>
-//     </div>
-//     </div>
-//     <div className="w-full md:w-1/2 border border-gray-200 p-4">
-      
-//       <div className="text-right">
-//         <p className="text-lg font-bold text-[#B88E2F]" >Total: "Rs. 250,000.00"</p>
-//         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Checkout</button>
-//       </div>
-//     </div>
-//   </div>
-// </div>
-//     </div>
-//     </div>
-//   );
-// }
-
-// export default Cart;
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Banner from '../components/banner';
+import Feature from '../components/Feature';
+
 
 const Cart = () => {
   return (
-    <div>
+    <div className=' w-full h-[1120px] top-[512px] left-[8294px]'>
       {/* Hero Section */}
-      <section className="relative h-[60vh] bg-cover bg-center bg-shop-bg">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+
+      <section className="relative h-[60vh] bg-cover bg-center ">
+        <Banner/>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
           {/* Icon Image */}
           <div className="mb-4">
-            <Image
-              src="/image/shop.png"
-              alt="Shop Icon"
-              width={100}
-              height={100}
-              className="object-cover rounded-full"
-            />
           </div>
-          <h1 className="text-5xl font-bold">Cart</h1>
+          <h1 className="text-5xl font-bold mt-24">Cart</h1>
           <p className="text-xl mt-4">
             <Link href="/" className="hover:underline">
               Home
@@ -107,15 +27,15 @@ const Cart = () => {
           </p>
         </div>
       </section>
-
+    <div className='w-full h-[525px] top-[416px] pl-[50px] rounded'>  
       {/* Cart Items Section */}
       <section className="bg-white py-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 left-[947px] gap-56 ">
             {/* Cart Items */}
-            <div className="space-y-6 md:w-[60%] ">
-              <div className="flex gap-4 bg-[#FFF9E5]">
-                <button className="px-4 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
+            <div className="w-[817px] h-[216px] top-[488px] left-[100px] border-spacing-1">
+              <div className="flex gap-20 bg-[#FFF9E5] ">
+                <button className="pl-8 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
                   Product
                 </button>
                 <button className="px-4 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
@@ -130,23 +50,25 @@ const Cart = () => {
               </div>
 
               {/* Product Details */}
-              <div className="grid grid-cols-5 gap-4 mt-6">
+              <div className="grid grid-cols-5 gap-12 mt-12">
                 <div className="flex justify-center items-center">
                   <Image
-                    src="/images/Group 137.png"
+                    src="/Images/Asgaard.png"
                     alt="Asgaard Sofa"
                     width={150}
                     height={150}
-                    className="object-cover rounded-md"
+                    className="object-cover rounded-md mt-12 left-24"
                   />
                 </div>
-                <div className="col-span-2 text-gray-700">
-                  <h2 className="text-lg font-semibold">Asgaard Sofa</h2>
+                <div className="col-span-1 text-gray-700 flex w-[108px] h-[24px] top-[590px] absolute ">
+                  <h2 className="text-lg font-semibold flex">Asgaard Sofa</h2>
                 </div>
                 <div className="text-gray-500">
                   <p>Rs. 250,000.00</p>
                 </div>
-                <div>
+                <div className='w-[32px] h-[32px] top-[635px] left-[615px] rounded border-spacing-1
+
+'>
                   <input
                     type="number"
                     defaultValue="1"
@@ -160,7 +82,7 @@ const Cart = () => {
             </div>
 
             {/* Cart Totals */}
-            <div className="space-y-6 bg-[#FFF9E5]">
+            <div className="space-y-6 bg-[#FFF9E5] rounded w-[393px] h-[390px] top-[488px] left-[947px]">
               <h1 className="text-2xl font-bold mb-4 text-center">Cart Totals</h1>
               <div className="flex justify-between py-2 border-b">
                 <span className="text-lg font-medium">Subtotal</span>
@@ -172,45 +94,19 @@ const Cart = () => {
                   Rs. 250,000.00
                 </span>
               </div>
-              <button className="w-full py-2 bg-black text-white rounded-md text-lg hover:bg-gray-800 transition mt-4">
+              <a href="/checkout">
+              <button className="w-[222px] h-[59px]  left-[1033px] py-2 bg-[#FFF9E5] text-black rounded-md text-lg border-2 border-black hover:bg-amber-100 transition mt-4">
                 Checkout
-              </button>
+              </button></a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="bg-gray-100 py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-black">Free Delivery</h2>
-              <p className="text-lg text-gray-700 mt-2">
-                For all orders over $50, consectetur adipiscing elit.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-black">90 Days Return</h2>
-              <p className="text-lg text-gray-700 mt-2">
-                If the product has an issue, consectetur adipiscing elit.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-black">Secure Payments</h2>
-              <p className="text-lg text-gray-700 mt-2">
-                100% secure payments, consectetur adipiscing elit.
-              </p>
-            </div>
+      
           </div>
-        </div>
-      </section>
-    </div>
+       <Feature/> </div>
+   
   );
 };
 

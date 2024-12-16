@@ -1,27 +1,28 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Feature from '../components/Feature';
+import Banner from '../components/banner';
+
 
 const Blog = () => {
   return (
-    <div>
+    <div className='w-full h-[2536px] top-[512px] left-[8294px]'>
       {/* First Section with Tailwind Background */}
-      <section className="relative h-[60vh] bg-cover bg-center bg-blog-bg">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      
+      <section className="relative h-[60vh] bg-cover bg-center ">
+        <Banner/>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-          {/* Small Image in Center */}
+          {/* Icon Image */}
           <div className="mb-4">
-            <Image
-              src="/image/blog.png"
-              alt="Blog Icon"
-              width={100}
-              height={100}
-              className="object-cover rounded-full"
-            />
           </div>
-          <h1 className="text-5xl font-bold">Blog</h1>
+          <h1 className="text-5xl font-bold mt-24">Blog</h1>
           <p className="text-xl mt-4">
-            <Link href="/">Home</Link> &gt; Blog
+            <Link href="/" className="hover:underline">
+              Home
+            </Link>{' '}
+            &gt; Blog
           </p>
         </div>
       </section>
@@ -35,7 +36,7 @@ const Blog = () => {
               {/* First Post */}
               <div>
                 <Image
-                  src="/image/2.jpeg"
+                  src="/Images/Rectangle 68.png"
                   alt="Going On"
                   width={300}
                   height={300}
@@ -54,7 +55,7 @@ const Blog = () => {
               {/* Second Post */}
               <div className="mt-12">
                 <Image
-                  src="/image/blog2.jpeg"
+                  src="/Images/Rectangle 68 (1).png"
                   alt="Going On Again"
                   width={300}
                   height={300}
@@ -73,7 +74,7 @@ const Blog = () => {
               {/* Third Post */}
               <div className="mt-12">
                 <Image
-                  src="/image/blog3.jpeg"
+                  src="/Images/Rectangle 68 (2).png"
                   alt="Third Post"
                   width={300}
                   height={300}
@@ -97,7 +98,7 @@ const Blog = () => {
               {/* Recent Post 1 */}
               <div className="flex items-center space-x-4">
                 <Image
-                  src="/image/b1.png"
+                  src="/Images/Rectangle 69.png"
                   alt="Recent Post 1"
                   width={100}
                   height={100}
@@ -114,7 +115,7 @@ const Blog = () => {
               {/* Recent Post 2 */}
               <div className="flex items-center space-x-4">
                 <Image
-                  src="/image/b2.png"
+                  src="/Images/Rectangle 69 (1).png"
                   alt="Recent Post 2"
                   width={100}
                   height={100}
@@ -131,7 +132,7 @@ const Blog = () => {
               {/* Recent Post 3 */}
               <div className="flex items-center space-x-4">
                 <Image
-                  src="/image/b3.png"
+                  src="/Images/Rectangle 69 (2).png"
                   alt="Recent Post 3"
                   width={100}
                   height={100}
@@ -148,7 +149,7 @@ const Blog = () => {
               {/* Recent Post 4 */}
               <div className="flex items-center space-x-4">
                 <Image
-                  src="/image/b4.png"
+                  src="/Images/Rectangle 69 (3).png"
                   alt="Recent Post 4"
                   width={100}
                   height={100}
@@ -165,7 +166,7 @@ const Blog = () => {
               {/* Recent Post 5 */}
               <div className="flex items-center space-x-4">
                 <Image
-                  src="/image/b5.png"
+                  src="/Images/Rectangle 69 (4).png"
                   alt="Recent Post 5"
                   width={100}
                   height={100}
@@ -182,30 +183,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
-      {/* 3rd Section: CONCEPT Posts */}
-      <section className="bg-gray-100 text-black py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* First Column */}
-            <div >
-              <h2 className="text-black font-bold text-3xl text-center">Free Delivery</h2>
-              <p className="text-lg text-gray-700">For all orders over $50, consectetur adipim scing elit.</p>
-            </div>
-
-            {/* Second Column */}
-            <div >
-              <h2 className="text-black font-bold text-3xl text-center">90 Days Return</h2>
-              <p className="text-lg text-gray-700 text-">If the product has an issue, consectetur adipim scing elit.</p>
-            </div>
-
-            {/* Third Column */}
-            <div >
-              <h2 className="text-black font-bold text-3xl text-center">Secure Payments</h2>
-              <p className="text-lg text-gray-700">100% secure payments, consectetur adipim scing elit.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
+    <Feature/>  
     </div>
   );
 }

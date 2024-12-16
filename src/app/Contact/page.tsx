@@ -1,14 +1,30 @@
+import Link from 'next/link';
 import React from 'react';
+import Banner from '../components/banner';
+import Feature from '../components/Feature';
 
 const ContactSection = () => {
-  // Form Submission Handler
- 
+
+    
+    
 
   return (
-    <>
+    <>   <header
+    className="relative bg-cover bg-center h-60"
+  > <Banner/>
+    <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+    <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
+      <div >
+      <h1 className="text-5xl font-bold">Contact</h1>
+      <p className="text-xl mt-4">
+        <Link href="/">Home</Link> &gt; Contact
+      </p>
+      </div>
+    </div>
+  </header>
       {/* Contact Section */}
       <section className="bg-white py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 my-12">
           {/* Heading and Paragraph */}
           <div className="text-center mb-12">
             <h1 className="text-3xl font-bold text-black">Get In Touch With Us</h1>
@@ -113,37 +129,7 @@ const ContactSection = () => {
           </div>
         </div>
       </section>
-
-      {/* Concept Posts Section */}
-      <section className="bg-gray-100 text-black py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* First Column */}
-            <div>
-              <h2 className="text-black font-bold text-3xl text-center">Free Delivery</h2>
-              <p className="text-lg text-gray-700 text-center">
-                For all orders over $50, consectetur adipiscing elit.
-              </p>
-            </div>
-
-            {/* Second Column */}
-            <div>
-              <h2 className="text-black font-bold text-3xl text-center">90 Days Return</h2>
-              <p className="text-lg text-gray-700 text-center">
-                If the product has an issue, consectetur adipiscing elit.
-              </p>
-            </div>
-
-            {/* Third Column */}
-            <div>
-              <h2 className="text-black font-bold text-3xl text-center">Secure Payments</h2>
-              <p className="text-lg text-gray-700 text-center">
-                100% secure payments, consectetur adipiscing elit.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Feature/>
     </>
   );
 };

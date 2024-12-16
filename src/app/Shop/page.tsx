@@ -4,10 +4,14 @@ import { HiOutlineViewGrid } from "react-icons/hi";
 import { RxDividerVertical } from "react-icons/rx";
 import { BsViewList } from "react-icons/bs";
 import Image from 'next/image';
-import backgroundImage from '../../../public/Images/banner.png'
+import Banner from '../components/banner';
+import Link from 'next/link';
+import Feature from '../components/Feature';
 
 
-export default function Page() {
+
+
+export default function Shop() {
   const products = [
     { id: 1, name: "Trenton modular sofa_3", price: "Rs. 25,000.00", image: "/Images/product16.jpeg" },
     { id: 2, name: "Granite dining table with dining chair", price: "Rs. 30,000.00", image: "/images/product7.jpeg" },
@@ -22,7 +26,7 @@ export default function Page() {
     { id: 11, name: "SJP_0825", price: "Rs. 50,000.00", image: "/images/product8.jpeg" },
     { id: 12, name: "Bella chair and table", price: "Rs. 16,000.00", image: "/images/product3.jpeg" },
     { id: 13, name: "Granite square side table", price: "Rs. 42,000.00", image: "/images/product15.jpeg" },
-    { id: 14, name: "Asgaard sofa", price: "Rs. 14,000.00", image: "/images/product2.jpeg" },
+    { id: 14, name: "Asgaard sofa", price: "Rs. 14,000.00", image: "/Images/Asgaard.png" },
     { id: 15, name: "Maya sofa three seater", price: "Rs. 38,000.00", image: "/images/product14.jpeg" },
     { id: 16, name: "Outdoor sofa set", price: "Rs. 28,000.00", image: "/images/product13.jpeg" },
   ];
@@ -32,13 +36,14 @@ export default function Page() {
       {/* Header Section */}
       <header
         className="relative bg-cover bg-center h-60"
-        style={{ backgroundImage:`url${backgroundImage}` }} // Updated path for background image
-      >
+      > <Banner/>
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div className="relative z-10 flex items-center justify-center h-full text-black">
-          <div>
-            <h1 className="text-6xl font-Poppins text-center">Shop</h1>
-            <p className="text-2xl mt-2">Home &gt; Shop</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
+          <div >
+          <h1 className="text-5xl font-bold">Shop</h1>
+          <p className="text-xl mt-4">
+            <Link href="/">Home</Link> &gt; Shop
+          </p>
           </div>
         </div>
       </header>
@@ -79,8 +84,34 @@ export default function Page() {
               </div>
             ))}
           </div>
-        </div>
+          {/* pages button */}
+          <div className='w-[392px] h-[60px] mt-[231px] relative ml-[400px] rounded-[10px] flex gap-8 justify-between items-center'>
+            <div className=' w-[60px] h-[60px] top-[2311px] left-[524px] rounded-[10px] bg-[#faf4f4] '>
+              <div className='w-[7px] h-[30px] top-[2326] left-[551px]'>  
+                <div className='text-[20px] leading-[30px] justify-center items-center my-4 mx-6'>  1
+                  </div></div> 
+            </div> 
+            <div className=' w-[60px] h-[60px] top-[2311px] left-[622px] rounded-[10px] bg-[#faf4f4] '>
+              <div className='w-[12px] h-[30px] top-[2326] left-[646px]'>  
+                <div className='text-[20px] leading-[30px] justify-center items-center my-4 mx-6'>  2
+                  </div></div> 
+            </div> 
+            <div className=' w-[60px] h-[60px] top-[2311px] left-[720px] rounded-[10px] bg-[#faf4f4] '>
+              <div className='w-[12px] h-[30px] top-[2326] left-[744px]'>  
+                <div className='text-[20px] leading-[30px] justify-center items-center my-4 mx-6'>  3
+                  </div></div> 
+            </div>
+            <div className=' w-[98px] h-[60px] top-[2311px] left-[818px] rounded-[10px] bg-[#faf4f4] '>
+              <div className='w-[43px] h-[30px] top-[2326] left-[846px]'>  
+                <div className='text-[20px] font-[300] leading-[30px] justify-center items-center my-4 mx-6'>  Next
+                  </div></div> 
+            </div>       
+      
+
+          </div>
+       </div>
       </main>
+      <Feature/>  
     </div>
   );
 }
