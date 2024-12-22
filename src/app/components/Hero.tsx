@@ -42,7 +42,7 @@ const Hero = () => {
           <div className="flex justify-between">
             <div className="bg-[#faf4f4] p-4 rounded shadow-lg">
             <Image
-                src="/images/product15.jpeg"
+                src="/Images/product15.jpeg"
                 alt="Side Table"
                 width={400}
                 height={400}
@@ -56,7 +56,7 @@ const Hero = () => {
             </div>
             <div className="bg-[#faf4f4] p-4 rounded shadow-lg">
             <Image
-                src="/images/side_table_2.jpeg"
+                src="/Images/side_table_2.jpeg"
                 alt="Another Side Table"
                 width={400}
                 height={400}
@@ -81,7 +81,7 @@ const Hero = () => {
           <div className="grid grid-cols-4 gap-4">
             <div className="text-center">
               <Image
-                src="/images/product16.jpeg"
+                src="/Images/product16.jpeg"
                 alt="Product 1"
                 width={150}
                 height={150}
@@ -92,7 +92,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <Image
-                src="/images/product7.jpeg"
+                src="/Images/product7.jpeg"
                 alt="Product 2"
                 width={150}
                 height={150}
@@ -103,7 +103,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <Image
-                src="/images/product4.jpeg"
+                src="/Images/product4.jpeg"
                 alt="Product 3"
                 width={150}
                 height={150}
@@ -114,7 +114,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <Image
-                src="/images/product1.jpeg"
+                src="/Images/product1.jpeg"
                 alt="Product 4"
                 width={150}
                 height={150}

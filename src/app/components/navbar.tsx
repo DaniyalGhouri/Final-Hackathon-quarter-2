@@ -28,7 +28,7 @@ const Header = () => {
           {/* Icons */}
           <div className="flex space-x-8 items-center">
             <Link href="/Account">
-              <Image src="/images/user.png" alt="User Profile Icon"  width={24} height={22} />
+              <Image src="/Images/user.png" alt="User Profile Icon"  width={24} height={22} />
             </Link>
             <Link href="/search">
               <Image src="/Images/searchicon.png" alt="Search Icon"width={24} height={22} />
@@ -37,7 +37,7 @@ const Header = () => {
               <Image src="/Images/wishicon.png" alt="Wishlist Icon"width={24} height={22} />
             </Link>
             <Link href="/cart">
-              <Image src="/images/cart.png" alt="Shopping Cart Icon" width={24} height={22} />
+              <Image src="/Images/cart.png" alt="Shopping Cart Icon" width={24} height={22} />
             </Link>
           </div>
         </nav>
