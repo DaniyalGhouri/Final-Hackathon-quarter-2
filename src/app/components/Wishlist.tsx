@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import Link from 'next/link'; // Import Link component for routing
 import Banner from './banner'; // Assuming Banner component is imported correctly
+import Image from 'next/image';
 
 interface Product {
   _id: string;
@@ -78,7 +79,7 @@ const Wishlist: React.FC = () => {
                 {wishlist.map((product) => (
                   <tr key={product._id} className="text-center">
                     <td className="border px-2 sm:px-4 py-2">
-                      <img src={product.imageUrl} alt={product.name} className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-md" />
+                      <Image src={product.imageUrl} alt={product.name} className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-md" />
                     </td>
                     <td className="border px-2 sm:px-4 py-2 text-xs sm:text-sm">{product.name}</td>
                     <td className="border px-2 sm:px-4 py-2 text-xs sm:text-sm">${product.price}</td>

@@ -4,9 +4,10 @@ import React from 'react';
 import { useCart } from '../components/cartContext';
 import Link from 'next/link';
 import Banner from '../components/banner'; // Make sure to import your Banner component
+import Image from 'next/image';
 
 const CartPage: React.FC = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity } = useCart();
 
   const discountedTotal = cart.reduce((total, item) => {
     const discountedPrice = item.price - (item.price * (item.discountPercentage / 100));
@@ -56,7 +57,7 @@ const CartPage: React.FC = () => {
                       <tr key={item._id} className="border-b">
                         <td className="px-4 py-2">
                           <div className="flex items-center">
-                            <img src={item.imageUrl} alt={item.name} className="w-12 h-12 object-cover rounded-md mr-4" />
+                            <Image src={item.imageUrl} alt={item.name} className="w-12 h-12 object-cover rounded-md mr-4" />
                             <span>{item.name}</span>
                           </div>
                         </td>

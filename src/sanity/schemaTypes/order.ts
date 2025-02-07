@@ -1,4 +1,4 @@
-export default {
+const orderSchema = {
   name: 'order',
   type: 'document',
   title: 'Order',
@@ -9,10 +9,11 @@ export default {
     { name: 'countryRegion', type: 'string', title: 'Country/Region' },
     { name: 'streetAddress', type: 'string', title: 'Street Address' },
     { name: 'townCity', type: 'string', title: 'Town/City' },
-    { name: 'ZipCode', type: 'number', title: 'Zip Code' },
-    { name: 'PhNumber', type: 'number', title: 'Phone Number' },
-    { name: 'Email', type: 'string', title: 'Email' },
-    { name: 'Additional_Info', type: 'text', title: 'Additional Information' },
+    { name: 'zipCode', type: 'number', title: 'Zip Code' }, // Updated to camelCase
+    { name: 'phoneNumber', type: 'number', title: 'Phone Number' }, // Updated to camelCase
+    { name: 'email', type: 'string', title: 'Email' }, // Updated to lowercase
+    { name: 'additionalInfo', type: 'text', title: 'Additional Information' }, // Updated to camelCase
+    
     {
       name: 'orderDetails',
       type: 'array',
@@ -28,25 +29,36 @@ export default {
         },
       ],
     },
+
     { name: 'subtotal', type: 'number', title: 'Subtotal' },
     { name: 'total', type: 'number', title: 'Total' },
-    { name: 'status', type: 'string', title: 'Status', initialValue: 'pending',
+
+    {
+      name: 'status',
+      type: 'string',
+      title: 'Status',
+      initialValue: 'pending',
       options: {
         list: [
-          { title: "pending", value: 'pending' },
-          { title: 'Dispatch', value: ' Dispatch' },
-          { title: 'Delivered', value: ' delivered' },
-  ]},},
+          { title: 'Pending', value: 'pending' },
+          { title: 'Dispatch', value: 'dispatch' }, // Removed extra space
+          { title: 'Delivered', value: 'delivered' }, // Removed extra space
+        ],
+      },
+    },
+
     {
       name: 'paymentMethod',
       type: 'string',
       title: 'Payment Method',
       options: {
         list: [
-          { title: 'Debit/Credit Card', value: 'Debit/credit card' },
-          { title: 'Cash on Delivery', value: 'Cash on Delivery' },
+          { title: 'Debit/Credit Card', value: 'debit_credit_card' }, // Updated for consistency
+          { title: 'Cash on Delivery', value: 'cash_on_delivery' }, // Updated for consistency
         ],
       },
     },
   ],
 };
+
+export default orderSchema;

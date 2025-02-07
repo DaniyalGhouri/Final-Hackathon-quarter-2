@@ -2,6 +2,7 @@ import React from 'react';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { useCart } from './cartContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CartSheet = () => {
   const { cart, removeFromCart } = useCart();
@@ -30,7 +31,7 @@ const CartSheet = () => {
               const discountedPrice = item.price - (item.price * (item.discountPercentage / 100));
               return (
                 <div key={item._id} className="flex items-center gap-4 mb-4">
-                  <img
+                  <Image
                     src={item.imageUrl}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-md"

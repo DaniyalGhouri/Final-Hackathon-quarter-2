@@ -1,4 +1,4 @@
-export default {
+const reviewSchema = {
   name: 'review',
   title: 'Review',
   type: 'document',
@@ -7,28 +7,29 @@ export default {
       name: 'product',
       title: 'Product',
       type: 'reference',
-      to: [{ type: 'product' }]
+      to: [{ type: 'product' }],
     },
     {
       name: 'author',
       title: 'Author',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'rating',
       title: 'Rating',
       type: 'number',
-      validation: (Rule: { min: (arg0: number) => { (): any; new(): any; max: { (arg0: number): any; new(): any; }; }; }) => Rule.min(1).max(5)
     },
     {
       name: 'review',
       title: 'Review',
-      type: 'text'
+      type: 'text',
     },
     {
       name: 'date',
       title: 'Date',
-      type: 'datetime'
-    }
-  ]
-}
+      type: 'datetime',
+    },
+  ],
+};
+
+export default reviewSchema;

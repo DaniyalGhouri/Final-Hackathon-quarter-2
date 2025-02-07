@@ -164,7 +164,7 @@ const HelpCenter = () => {
           </div>
           <div className="text-center mb-8 sm:mb-12 mt-8 sm:mt-12">
             <h1 className="text-2xl sm:text-3xl font-bold">Frequently Asked Questions</h1>
-            <p className="text-gray-600 mt-4">Got questions? We've got answers! Below are some of the most commonly asked questions.</p>
+            <p className="text-gray-600 mt-4">Got questions? We have got answers! Below are some of the most commonly asked questions.</p>
           </div>
           <div className="space-y-6 sm:space-y-8">
             {faqData.map((faq, index) => (

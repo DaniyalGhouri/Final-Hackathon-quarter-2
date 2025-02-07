@@ -25,7 +25,7 @@
 import Link from "next/link";
 
 export default function PaymentSuccess({
-  searchParams: { amount, orderId, firstName, lastName },
+  searchParams: { amount,  firstName,  },
 }: {
   searchParams: { amount: string; orderId: string; firstName: string; lastName: string };
 }) {

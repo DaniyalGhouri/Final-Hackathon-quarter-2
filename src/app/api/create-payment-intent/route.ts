@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-01-27.acacia", // Use the latest API version
 });
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const { amount, orderId, customerName, receiptEmail } = await request.json();
 
   try {

@@ -191,7 +191,7 @@ const Shop = () => {
           {/* Customer Rating and Review Button */}
           <div className="mt-10 text-center">
             <h3 className="text-xl md:text-3xl font-bold text-black-600 mb-4">Customer Rating and Review</h3>
-            <p className="text-sm md:text-base">"Your reviews help others make informed decisions. Thank you for sharing your experience with us!"</p>
+            <p className="text-sm md:text-base">Your reviews help others make informed decisions. Thank you for sharing your experience with us!</p>
             <Link href="/customerReviewsRating">
               <button className="mt-4 p-3 bg-blue-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">
                 Go to Customer Reviews and Ratings
