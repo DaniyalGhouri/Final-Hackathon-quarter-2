@@ -1,113 +1,123 @@
+'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import { useCart } from '../components/cartContext';
 import Link from 'next/link';
-import Banner from '../components/banner';
-import Feature from '../components/Feature';
+import Banner from '../components/banner'; // Make sure to import your Banner component
 
+const CartPage: React.FC = () => {
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
-const Cart = () => {
+  const discountedTotal = cart.reduce((total, item) => {
+    const discountedPrice = item.price - (item.price * (item.discountPercentage / 100));
+    return total + discountedPrice * item.quantity;
+  }, 0);
+
   return (
-    <div className=' w-full h-[1120px] top-[512px] left-[8294px]'>
-      {/* Hero Section */}
-
-      <section className="relative h-[60vh] bg-cover bg-center ">
-        <Banner/>
-        <div className="absolute inset-0 bg-black opacity-30"></div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-          {/* Icon Image */}
-          <div className="mb-4">
+    <div>
+      {/* Banner */}
+      <header className="relative bg-cover bg-center h-70">
+        <Banner />
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
+          <div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Cart</h1>
+            <p className="text-sm sm:text-lg mt-4">
+              <Link href="/">Home</Link> &gt; Cart
+            </p>
           </div>
-          <h1 className="text-5xl font-bold mt-24">Cart</h1>
-          <p className="text-xl mt-4">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>{' '}
-            &gt; Cart
-          </p>
         </div>
-      </section>
-    <div className='w-full h-[525px] top-[416px] pl-[50px] rounded'>  
-      {/* Cart Items Section */}
-      <section className="bg-white py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 left-[947px] gap-56 ">
+      </header>
+
+      {/* Cart Content */}
+      <div className="p-6 max-w-screen-xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6">Cart</h2>
+        
+        {cart.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Cart Items */}
-            <div className="w-[817px] h-[216px] top-[488px] left-[100px] border-spacing-1">
-              <div className="flex gap-20 bg-[#FFF9E5] ">
-                <button className="pl-8 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
-                  Product
-                </button>
-                <button className="px-4 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
-                  Price
-                </button>
-                <button className="px-4 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
-                  Quantity
-                </button>
-                <button className="px-4 py-2 font-semibold border border-transparent hover:bg-amber-100 transition">
-                  Subtotal
-                </button>
-              </div>
-
-              {/* Product Details */}
-              <div className="grid grid-cols-5 gap-12 mt-12">
-                <div className="flex justify-center items-center">
-                  <Image
-                    src="/Images/Asgaard.png"
-                    alt="Asgaard Sofa"
-                    width={150}
-                    height={150}
-                    className="object-cover rounded-md mt-12 left-24"
-                  />
-                </div>
-                <div className="col-span-1 text-gray-700 flex w-[108px] h-[24px] top-[590px] absolute ">
-                  <h2 className="text-lg font-semibold flex">Asgaard Sofa</h2>
-                </div>
-                <div className="text-gray-500">
-                  <p>Rs. 250,000.00</p>
-                </div>
-                <div className='w-[32px] h-[32px] top-[635px] left-[615px] rounded border-spacing-1
-
-'>
-                  <input
-                    type="number"
-                    defaultValue="1"
-                    className="w-full p-2 border border-gray-300 rounded-md text-center"
-                  />
-                </div>
-                <div>
-                  <p className="font-semibold">Rs. 250,000.00</p>
-                </div>
-              </div>
+            <div className="lg:w-2/3">
+              <table className="min-w-full table-auto border-collapse">
+                <thead>
+                  <tr className="border-b">
+                    <th className="px-4 py-2 text-left">Product</th>
+                    <th className="px-4 py-2 text-left">Price</th>
+                    <th className="px-4 py-2 text-left">Quantity</th>
+                    <th className="px-4 py-2 text-left">Subtotal</th>
+                    <th className="px-4 py-2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((item) => {
+                    const discountedPrice = item.price - (item.price * (item.discountPercentage / 100));
+                    return (
+                      <tr key={item._id} className="border-b">
+                        <td className="px-4 py-2">
+                          <div className="flex items-center">
+                            <img src={item.imageUrl} alt={item.name} className="w-12 h-12 object-cover rounded-md mr-4" />
+                            <span>{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-2">$. {item.price}</td>
+                        <td className="px-4 py-2">
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                              className="px-2 py-1 bg-gray-300 rounded-md"
+                            >
+                              +
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                              className="px-2 py-1 bg-gray-300 rounded-md"
+                              disabled={item.quantity <= 1}
+                            >
+                              -
+                            </button>
+                          </div>
+                        </td>
+                        <td className="px-4 py-2">$. {(discountedPrice * item.quantity).toFixed(2)}</td>
+                        <td className="px-4 py-2">
+                          <button
+                            onClick={() => removeFromCart(item._id)}
+                            className="px-4 py-2 bg-red-500 text-white rounded-md w-full sm:w-auto"
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
 
             {/* Cart Totals */}
-            <div className="space-y-6 bg-[#FFF9E5] rounded w-[393px] h-[390px] top-[488px] left-[947px]">
-              <h1 className="text-2xl font-bold mb-4 text-center">Cart Totals</h1>
-              <div className="flex justify-between py-2 border-b">
-                <span className="text-lg font-medium">Subtotal</span>
-                <span className="text-lg font-medium">Rs. 250,000.00</span>
+            <div className="lg:w-1/3 bg-amber-100 p-4 rounded-md mt-6 lg:mt-0">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4">Cart Totals</h3>
+              <div className="flex justify-between mb-2">
+                <span className="font-medium">Subtotal</span>
+                <span className="font-medium">$. {discountedTotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between py-2 border-b">
-                <span className="text-xl font-semibold">Total</span>
-                <span className="text-xl font-semibold text-yellow-500">
-                  Rs. 250,000.00
-                </span>
+              <div className="flex justify-between mb-4">
+                <span className="font-medium">Total</span>
+                <span className="font-medium text-lg">$. {discountedTotal.toFixed(2)}</span>
               </div>
-              <a href="/checkout">
-              <button className="w-[222px] h-[59px]  left-[1033px] py-2 bg-[#FFF9E5] text-black rounded-md text-lg border-2 border-black hover:bg-amber-100 transition mt-4">
-                Checkout
-              </button></a>
+              <div className="flex gap-4">
+                <Link href="/checkout"
+                  className="w-full mt-4 py-2 px-4 text-center text-black rounded-lg hover:bg-black hover:text-white transition-transform duration-300 ease-in-out transform hover:scale-105 border font-bold border-black">
+                  Checkout
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      
-          </div>
-       <Feature/> </div>
-   
+        )}
+      </div>
+    </div>
   );
 };
 
-export default Cart;
+export default CartPage;

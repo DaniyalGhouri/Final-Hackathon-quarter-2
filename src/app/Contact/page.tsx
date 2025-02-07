@@ -4,24 +4,22 @@ import Banner from '../components/banner';
 import Feature from '../components/Feature';
 
 const ContactSection = () => {
-
-    
-    
-
   return (
-    <>   <header
-    className="relative bg-cover bg-center h-60"
-  > <Banner/>
-    <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-    <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
-      <div >
-      <h1 className="text-5xl font-bold">Contact</h1>
-      <p className="text-xl mt-4">
-        <Link href="/">Home</Link> &gt; Contact
-      </p>
-      </div>
-    </div>
-  </header>
+    <>   
+        {/* Banner */}
+        <header className="relative bg-cover bg-center h-70">
+        <Banner />
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
+          <div>
+            <h1 className="text-5xl font-bold">Contact</h1>
+            <p className="text-xl mt-4">
+              <Link href="/">Home</Link> &gt; Contact
+            </p>
+          </div>
+        </div>
+      </header>
+
       {/* Contact Section */}
       <section className="bg-white py-16">
         <div className="container mx-auto px-4 my-12">
@@ -35,7 +33,7 @@ const ContactSection = () => {
           </div>
 
           {/* Two Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* First Column (Transparent with Dark Navy Blue Border) */}
             <div className="border-4 border-blue-900 p-8 rounded-lg space-y-6">
               <div>
@@ -62,7 +60,7 @@ const ContactSection = () => {
 
             {/* Second Column (Contact Form) */}
             <div className="bg-gray-50 p-8 rounded-lg shadow-md">
-              <form className="space-y-6" >
+              <form className="space-y-6">
                 {/* Your Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -129,7 +127,8 @@ const ContactSection = () => {
           </div>
         </div>
       </section>
-      <Feature/>
+
+      <Feature />
     </>
   );
 };

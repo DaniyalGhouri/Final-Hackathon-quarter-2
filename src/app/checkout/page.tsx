@@ -1,201 +1,200 @@
-import React from 'react'
+"use client";
+import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from "react";
+import { useCart } from "../components/cartContext";
+import client from "@/sanity/lib/client";
+import Banner from '../components/banner';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+const Checkout: React.FC = () => {
+  const { cart } = useCart();
 
-import Link from 'next/link'
-import Banner from '../components/banner'
-import Feature from '../components/Feature'
+  // State for customer details
+  const [customerDetails, setCustomerDetails] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    countryRegion: "",
+    streetAddress: "",
+    townCity: "",
+    ZipCode: "",
+    PhNumber: "",
+    Email: "",
+    Additional_Info: "",
+    paymentMethod: "",
+  });
 
-const Checkout = () => {
+  // State for errors
+  const [error, setError] = useState<string | null>(null);
+
+  // Handle input change
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCustomerDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
+  };
+  
+const router = useRouter()
+
+const handlePlaceOrder = async () => {
+  if (!customerDetails.paymentMethod) {
+    alert("Please select a payment method.");
+    return;
+  }
+
+  const orderDetails = {
+    _type: "order",
+    ...customerDetails,
+    orderDetails: cart.map((item) => ({
+      _type: "object",
+      _key: uuidv4(),
+      productId: item._id,
+      quantity: item.quantity,
+      discountedPrice: item.price - (item.price * item.discountPercentage) / 100,
+    })),
+    subtotal: cart.reduce(
+      (total, item) =>
+        total + (item.price - (item.price * item.discountPercentage) / 100) * item.quantity,
+      0
+    ),
+    total: cart.reduce(
+      (total, item) =>
+        total + (item.price - (item.price * item.discountPercentage) / 100) * item.quantity,
+      0
+    ),
+    status: "pending",
+    paymentMethod: customerDetails.paymentMethod, // ✅ Ensure this is stored
+  };
+
+  try {
+    const response = await client.create(orderDetails);
+    console.log("Order saved successfully:", response);
+
+    if (customerDetails.paymentMethod === "Debit Card") {
+      // ✅ Redirect to Stripe AFTER storing the order
+      router.push("/checkout/payment");
+    } else {
+      // ✅ Show confirmation for Cash on Delivery
+      alert("Order placed successfully!");
+    }
+  } catch (error) {
+    console.error("Error saving order:", error);
+    setError("An unknown error occurred. Please try again.");
+  }
+};
+
+
+
   return (
-    <div>
-      {/* First Section with Tailwind Background */}
-      <section className="relative h-[60vh] bg-cover bg-center bg-shop-bg">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <Banner/>
-        <div className="absolute inset-0 flex flex-col items-center justify-center  text-white text-center">
-          {/* Small Image in Center */}
-          <div className="mb-4">
-            
+    <div className="p-6 max-w-screen-xl mx-auto">
+    
+      {/* Banner */}
+      <header className="relative bg-cover bg-center h-70">
+        <Banner />
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center mt-[221px] text-white text-center">
+          <div>
+            <h1 className="text-4xl font-bold">Checkout</h1>
+            <p className="text-xl mt-4">
+              <Link href="/">Home</Link> &gt; Checkout
+            </p>
           </div>
-          <h1 className="text-5xl font-bold">Check Out</h1>
-          <p className="text-xl mt-4">
-            <Link href="/">Home</Link> &gt; Check Out
-          </p>
         </div>
-      </section>
+      </header> 
 
-      {/* 2nd Section: Billing Details and Product Information */}
-      <section className="bg-white py-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* First Column: Billing Details */}
-            <div className="space-y-6">
-              <h1 className="text-3xl font-bold ">Billing Details</h1>
-              <form className="space-y-4">
-                {/* First Name */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="firstName">First Name</label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    placeholder="Enter your first name"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Last Name */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="lastName">Last Name</label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    placeholder="Enter your last name"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Company Name */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="companyName">Company Name (optional)</label>
-                  <input
-                    type="text"
-                    id="companyName"
-                    placeholder="Enter your company name"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Country/Region */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="country">Country/Region</label>
-                  <input
-                    type="text"
-                    id="country"
-                    placeholder="Enter your country"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Street Address */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="streetAddress">Street Address</label>
-                  <input
-                    type="text"
-                    id="streetAddress"
-                    placeholder="Enter your street address"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Town/City */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="townCity">Town/City</label>
-                  <input
-                    type="text"
-                    id="townCity"
-                    placeholder="Enter your town or city"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Province */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="province">Province</label>
-                  <input
-                    type="text"
-                    id="province"
-                    placeholder="Enter your province"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* ZIP Code */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="zipCode">ZIP Code</label>
-                  <input
-                    type="text"
-                    id="zipCode"
-                    placeholder="Enter your ZIP code"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Phone */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="phone">Phone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter your phone number"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Email */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-                {/* Additional Information */}
-                <div>
-                  <label className="block text-lg font-semibold" htmlFor="additionalInfo">Additional Information</label>
-                  <textarea
-                    id="additionalInfo"
-                    placeholder="Any additional information"
-                    className="w-full p-3 border border-gray-300 rounded-md"
-                  />
-                </div>
-              </form>
-            </div>
+      {error && <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
-            {/* Second Column: Product Information */}
-            <div className="space-y-6">
-              <h1 className="text-3xl font-bold">Product <span className='text-end'>Sub Total</span> </h1>
-              <div className="space-y-4">
-                {/* Row 1: Product */}
-                <div className="flex justify-between">
-                  <span>Asgaard Sofa *1</span>
-                  <span>Rs 250,000.00</span>
-                </div>
-                {/* Row 2: Subtotal */}
-                <div className="flex justify-between font-semibold">
-                  <span>Subtotal</span>
-                  <span>Rs 250,000.00</span>
-                </div>
-                {/* Row 3: Total */}
-                <div className="flex justify-between font-semibold">
-                  <span>Total</span>
-                  <span>Rs 250,000.00</span>
-                </div>
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Billing Details */}
+        <div className="w-full lg:w-2/3">
+          <h3 className="text-xl font-semibold mb-4">Billing Details</h3>
+          <form>
+            {["firstName", "lastName", "companyName", "countryRegion", "streetAddress", "townCity", "ZipCode", "PhNumber", "Email", "Additional_Info"].map((field) => (
+              <div key={field} className="mb-4">
+                <label className="block font-medium mb-2">{field.replace(/([A-Z])/g, " $1")}</label>
+                <input
+                  type={field === "Email" ? "email" : "text"}
+                  name={field}
+                  value={customerDetails[field as keyof typeof customerDetails]}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2"
+                />
               </div>
-              <hr className="my-4" />
-              <h3 className="font-bold text-xl flex items-center space-x-2">
-                <span className="w-3 h-3 bg-black rounded-full"></span>
-                <span>Direct Bank Transfer</span>
-              </h3>
-              <p className="text-sm mt-2">
-                Make our payment directly into our bank account. Please use your order ID as the payment reference. Your order will not be shipped until your funds shift onto our account.
-              </p>
-              <h3 className="font-bold text-xl flex items-center space-x-2 mt-4">
-                <span className="w-3 h-3 border-2 border-black rounded-full"></span>
-                
-                <span>Direct Bank Transfer</span>
-              </h3>
-              <h3 className="font-bold text-xl flex items-center space-x-2 mt-4">
-                <span className="w-3 h-3 border-2 border-black rounded-full"></span>
-                
-                <span>Cash on Delivery</span>
-              </h3>
-              <p className="text-sm mt-2">
-                Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.
-              </p>
-              {/* Place Order Button */}
-              <button className="w-full py-2 bg-transparent border border-black rounded-md text-black text-lg hover:bg-black hover:text-white transition">
-                Place Order
-              </button>
+            ))}
+          </form>
+        </div>
+
+        {/* Product Summary */}
+        <div className="w-full lg:w-1/3">
+          <h3 className="text-xl font-semibold mb-4">Product Summary</h3>
+          <div className="bg-amber-100 p-4 rounded-md">
+            {cart.map((item) => {
+              const discountedPrice = item.price - (item.price * item.discountPercentage) / 100;
+              return (
+                <div key={item._id} className="mb-4">
+                  <div className="flex justify-between">
+                    <span>{item.name} × {item.quantity}</span>
+                    <span>$ {discountedPrice.toFixed(2)}</span>
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="flex justify-between font-medium mb-2">
+              <span>Subtotal</span>
+              <span>$ {cart.reduce((total, item) => total + (item.price - (item.price * item.discountPercentage) / 100) * item.quantity, 0).toFixed(2)}</span>
             </div>
+
+            <div className="flex justify-between font-medium text-lg mb-4">
+              <span>Total</span>
+              <span>$ {cart.reduce((total, item) => total + (item.price - (item.price * item.discountPercentage) / 100) * item.quantity, 0).toFixed(2)}</span>
+            </div>
+
+            {/* Payment Methods */}
+            <h4 className="font-semibold mb-2">Payment Methods</h4>
+            {["Debit Card", "Cash on Delivery"].map((method) => (
+              <div key={method} className="mb-2">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value={method}
+                    checked={customerDetails.paymentMethod === method}
+                    onChange={(e) =>
+                      setCustomerDetails((prevDetails) => ({
+                        ...prevDetails,
+                        paymentMethod: e.target.value,
+                      }))
+                    }
+                    className="mr-2"
+                  />
+                  {method}
+                </label>
+              </div>
+            ))}
+
+           {/* Conditional Buttons */}
+           {customerDetails.paymentMethod === "Debit Card" ? (
+  <button
+    className="w-full mt-4 py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+    onClick={handlePlaceOrder}
+  >
+    Proceed to Payment
+  </button>
+) : (
+  <button
+    className="w-full mt-4 py-2 px-4 bg-black text-white rounded-lg hover:bg-gray-800"
+    onClick={handlePlaceOrder}
+  >
+    Place Order
+  </button>
+)}
+
           </div>
         </div>
-      </section>
-
-    <Feature/>  
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
+

@@ -3,8 +3,8 @@ import React from 'react';
 
 const Banner = () => {
   return (
-    <div 
-      className="relative w-full h-[316px] -[100px] bg-cover bg-center" 
+    <div
+      className="relative w-full h-[316px] sm:h-[400px] bg-cover bg-center"
       style={{ backgroundImage: "url('/Images/banner.png')" }}
     >
       {/* Overlay */}
@@ -15,13 +15,15 @@ const Banner = () => {
         {/* Small Image in Center */}
         <div className="mb-4">
           <Image
-            src="/Images/Meubel House_Logos-05.png" 
+            src="/Images/Meubel House_Logos-05.png"
             alt="Shop Icon"
             width={100}
             height={100}
             className="object-cover rounded-full"
           />
         </div>
+        {/* Title Text */}
+        
       </div>
     </div>
   );
