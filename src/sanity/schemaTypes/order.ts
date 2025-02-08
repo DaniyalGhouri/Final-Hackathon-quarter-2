@@ -9,9 +9,10 @@ const orderSchema = {
     { name: 'countryRegion', type: 'string', title: 'Country/Region' },
     { name: 'streetAddress', type: 'string', title: 'Street Address' },
     { name: 'townCity', type: 'string', title: 'Town/City' },
-    { name: 'zipCode', type: 'number', title: 'Zip Code' }, // Updated to camelCase
-    { name: 'phoneNumber', type: 'number', title: 'Phone Number' }, // Updated to camelCase
-    { name: 'email', type: 'string', title: 'Email' }, // Updated to lowercase
+    { name: 'zipCode', type: 'number', title: 'Zip Code' },
+    { name: 'phNumber', type: 'number', title: 'Phone Number' },
+    { name: 'email', type: 'string', title: 'Email' },
+
     { name: 'additionalInfo', type: 'text', title: 'Additional Information' }, // Updated to camelCase
     
     {
@@ -41,12 +42,12 @@ const orderSchema = {
       options: {
         list: [
           { title: 'Pending', value: 'pending' },
-          { title: 'Dispatch', value: 'dispatch' }, // Removed extra space
-          { title: 'Delivered', value: 'delivered' }, // Removed extra space
+          { title: 'Dispatch', value: 'dispatch' },
+          { title: 'Delivered', value: 'delivered' },
         ],
       },
     },
-
+  
     {
       name: 'paymentMethod',
       type: 'string',
