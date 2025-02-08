@@ -7,7 +7,9 @@ const client = createClient({
   dataset: "production",
   useCdn: false, // Set to true if you want faster reads
   apiVersion: '2025-01-13',
+
   token:process.env.NEXT_PUBLIC_SANITY_API_TOKEN,
+
 });
 
 // Function to upload an image to Sanity
