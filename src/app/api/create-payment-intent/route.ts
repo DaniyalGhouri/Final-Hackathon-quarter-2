@@ -6,24 +6,22 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not defined!");
 
 const stripe = new Stripe(stripeKey, {
-  apiVersion: "2025-01-27.acacia", // Latest stable version
+  apiVersion: "2025-01-27.acacia", // Use stable Stripe API version
 });
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, orderId, customerName, receiptEmail } = await request.json();
+    const { amount } = await request.json();
 
     // Validate input
-    if (!amount || !orderId || !customerName || !receiptEmail) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    if (!amount) {
+      return NextResponse.json({ error: "Amount is required" }, { status: 400 });
     }
 
     // Create PaymentIntent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert to cents
       currency: "usd",
-      metadata: { orderId, customerName },
-      receipt_email: receiptEmail,
     });
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });

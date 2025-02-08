@@ -35,6 +35,8 @@ const CartSheet = () => {
                     src={item.imageUrl}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-md"
+                    width={50}
+                    height={50}
                   />
                   <div className="flex-1">
                     <h3 className="text-sm sm:text-base font-medium">{item.name}</h3>
