@@ -59,7 +59,7 @@ const Header = () => {
                   />
                 </Link>
                 {/* Search Icon */}
-                <Link href="/search">
+                <Link href="/Search">
                   <Image
                     src="/Images/searchicon.png"
                     alt="Search Icon"
@@ -67,7 +67,7 @@ const Header = () => {
                     height={22}
                   />
                 </Link>
-                <Link href="/wishlist">
+                <Link href="/Wishlist">
                   <Image
                     src="/Images/wishicon.png"
                     alt="Wishlist Icon"
