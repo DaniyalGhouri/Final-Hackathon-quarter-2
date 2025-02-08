@@ -42,7 +42,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3000/checkout/payment/paymentsuccess?amount=${amount}`,
+        return_url: `https://final-hackathon-quarter-2-psnw.vercel.app/checkout/payment/paymentsuccess?amount=${amount}`,
       },
     });
 
